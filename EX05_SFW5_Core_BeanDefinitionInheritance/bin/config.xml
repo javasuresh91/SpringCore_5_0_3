@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Abstrct attribute is option, it is used to avoid the direct insistate 
+		by the ApplicationContext -->
+	<bean id="inheritedTestBean" abstract="true" class="com.demo.TestBean">
+		<property name="name" value="parent" />
+		<property name="age" value="1" />
+	</bean>
+
+	<bean id="inheritsWithSameClass" parent="inheritedTestBean">
+		<property name="name" value="override" />
+		<!-- the age property value of 1 will be inherited from parent -->
+	</bean>
+
+
+	<bean id="inheritedTestBeanOne" class="com.demo.TestBean">
+		<property name="name" value="parent" />
+		<property name="age" value="1" />
+	</bean>
+	
+	<bean id="inheritsWithDiffClass" parent="inheritsWithSameClass"
+		class="com.demo.DerivedTestBean">
+		<property name="name" value="parentChile" />
+	</bean>
+
+
+</beans>
