@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Name space baen -->
+	<bean id="exampleBean" class="com.demo.di.ExampleBean" p:dataOne="nameSpaceVale" />
+
+	<!-- Loading the Property value and Location -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="properties">
+			<value>
+				demo=property value to read the from DI
+			</value>
+		</property>
+		<property name="location">
+			<value>
+				classpath:app.properties
+			</value>
+		</property>
+	</bean>
+	<!-- Using the property values -->
+	<bean id="exampleBeanPropertyValue" class="com.demo.di.ExampleBean"
+		p:dataOne="${demo}" />
+	<bean id="exampleBeanPropertyLocation" class="com.demo.di.ExampleBean"
+		p:dataOne="${locationLoadingdemo}" />
+
+	<!-- Using idref bean Injection - Use to get the name of the Bean -->
+	<bean id="idrefUseByPropertyAttribute" class="com.demo.di.ExampleBeanOne">
+		<property name="name">
+			<idref bean="exampleBean"></idref>
+		</property>
+	</bean>
+
+	<bean id="idrefUseByConstructorAttribute" class="com.demo.di.ExampleBeanTwo">
+		<constructor-arg>
+			<idref bean="exampleBean"></idref>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="exampleBean"></ref>
+		</constructor-arg>
+	</bean>
+
+	<bean name="innerBeanUsedByPropertyAttribute" class="com.demo.di.ExampleBeanOne">
+		<property name="beanData">
+			<bean class="com.demo.di.ExampleBean">
+				<property name="dataOne" value="innerBeanDataOne"></property>
+				<property name="dataTwo" value="innerBeanDataTwo"></property>
+			</bean>
+		</property>
+	</bean>
+	<!-- Using Depends On Attribute -->
+	<bean id="dependsOn" class="com.demo.di.ExampleBeanOne"
+		depends-on="exampleBean">
+		<property name="beanData">
+			<ref bean="exampleBean"></ref>
+		</property>
+	</bean>
+	<!-- Lazy Initialized -->
+	<bean name="lazy" class="com.demo.di.LazyBean" lazy-init="true">
+		<property name="dataOne" value="lazyValue"></property>
+	</bean>
+</beans>

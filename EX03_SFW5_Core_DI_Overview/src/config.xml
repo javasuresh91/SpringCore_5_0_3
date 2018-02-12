@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Primitive type Constructor injection, index attribute is an optional -->
+	<bean id="constructorInjectionOne" class="com.demo.di.ConstructorBasedInjectionOne">
+		<constructor-arg type="java.lang.String" index="0"
+			value="Data One" />
+		<constructor-arg type="java.lang.String" index="1"
+			value="Data Two" />
+	</bean>
+
+	<!-- Class type constructor injection -->
+	<bean id="exampleBean" class="com.demo.di.ExampleBean">
+		<property name="dataOne" value="123"></property>
+	</bean>
+	<bean id="constructorInjectionTwo" class="com.demo.di.ConstructorBasedInjectionTwo">
+		<constructor-arg ref="exampleBean"></constructor-arg>
+	</bean>
+
+	<!-- name attribute is used to avoid ambiguation -->
+	<bean name="constructorInjectionThree" class="com.demo.di.ConstructorBasedInjectionThree">
+		<constructor-arg name="dataTwo" value="123"></constructor-arg>
+		<constructor-arg name="dataOne" value="dataOne"></constructor-arg>
+	</bean>
+
+	<bean id="setterInjection" class="com.demo.di.SetterBasedInjection">
+		<property name="exampleBean" ref="exampleBean"></property>
+	</bean>
+
+</beans>

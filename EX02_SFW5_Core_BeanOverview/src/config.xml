@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Instantiation with a Default Constructor -->
+	<bean id="example" class="com.demo.bean.ExampleBean">
+		<property name="dataOne" value="exampleBean"></property>
+	</bean>
+	<bean id="exampleBeanTwo" class="com.demo.bean.ExampleBeanTwo">
+		<property name="dataOne" value="exampleTwoBean"></property>
+	</bean>
+
+	<!-- Instantiation with a Factory Bean -->
+	<bean name="factoryBeanOne" class="com.demo.bean.FactoryBean">
+		<property name="dataOne" value="exampleFactoeyBean"></property>
+	</bean>
+	<!-- Instantiation with a Factory method -->
+	<bean name="factoryBeanTwo" class="com.demo.bean.FactoryBean"
+		factory-method="getStaticInstance">
+		
+	</bean>
+	<!-- Instantiation with a Factory method via the factory bean -->
+	<bean name="factoryBeanThree" class="com.demo.bean.FactoryBean" factory-bean="factoryBeanOne"
+		factory-method="getNonStaticInstance">		
+	</bean>
+
+</beans>
