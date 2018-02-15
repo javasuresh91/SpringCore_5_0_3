@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config />
+
+	<bean id="withoutRequired" class="com.annotation.config.MovieFinder">
+	</bean>
+
+	<bean id="withRequired" class="com.annotation.config.SimpleMovieLister">
+		<property name="movieFinder" ref="withoutRequired"></property>
+		<property name="movieName" value="xxxx"></property>
+	</bean>
+	<bean name="testBeanOn" class="com.annotation.config.TestBeanOne">
+		<property name="dataOne" value="constructorAutowire"></property>
+	</bean>
+	<bean name="testBeanTwo" class="com.annotation.config.TestBeanTwo">
+		<property name="dataOne" value="SetteerAutowire"></property>
+	</bean>
+	<!-- The commented bean below cause the " org.springframework.beans.factory.NoUniqueBeanDefinitionException" 
+		it can be over come by @Primary and @Qualifer -->
+	<!-- <bean name="testBeanTwooo" class="com.annotation.config.TestBeanTwo">
+		<property name="dataOne" value="SetteerAutowireoooo"></property>
+	</bean> -->
+
+	<bean name="testBeanThre" class="com.annotation.config.TestBeanThree">
+		<property name="dataOne" value="CustomeMethodAutowire"></property>
+	</bean>
+
+	<bean id="withAutowire" class="com.annotation.config.Setter_Construtor_Autowire">
+		<property name="name" value="primitiveTypeAutowire"></property>
+	</bean>
+
+	<bean name="collectionAutowire" class="com.annotation.config.CollectionAutowire">
+	</bean>
+</beans>
