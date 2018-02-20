@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+	<context:annotation-config />
+	<!-- <context:component-scan base-package="xxx.xxx"> -->
+	<bean id="testBeanFirst" class="com.demo.qualifier.xml.TestBeanOne">
+		<qualifier value="beanFirst"></qualifier>
+		<property name="dataOne" value="testBeanFirstValue"></property>
+	</bean>
+	<bean id="testBeanSecond" class="com.demo.qualifier.xml.TestBeanOne">
+		<!-- <qualifier value="beanSecond"></qualifier> -->
+		<qualifier type="com.demo.qualifier.xml.CustomQualifier"
+			value="beanSecond"></qualifier>
+		<property name="dataOne" value="testBeanSecondValue"></property>
+	</bean>
+	<bean name="usingQualifierOne" class="com.demo.qualifier.xml.AutowireUsingQualifier"></bean>
+</beans>
