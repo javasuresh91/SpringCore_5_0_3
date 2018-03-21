@@ -1,0 +1,15 @@
+--- Basic ----
+spring-Core
+spring-Bean
+spring-context
+spring-expression
+commons-logging
+--- Bean Processor, -----
+spring-aop
+--- @named @Inject---
+javax.inject-1
+---- Aspect Oriented Prgm ----
+aspectjrt
+aspectweaver
+
+
