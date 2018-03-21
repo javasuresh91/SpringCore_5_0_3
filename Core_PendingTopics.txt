@@ -27,5 +27,3 @@
 4.5.15. The Elvis Operator - For groovy
 4.5.16. Safe Navigation operator - For groovy
 4.5.18. Collection Projection
-5. Aspect Oriented Programming with Spring
-6. Spring AOP APIs
